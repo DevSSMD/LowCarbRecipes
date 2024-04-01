@@ -12,6 +12,7 @@ class LCRecipeCardVC: UIViewController {
        
     private let tableview = UITableView()
     var selectedImageURL: URL?
+    var downloadedImage = UIImage()
     var recipeName: String = ""
     var selectedRecipeImage = UIImageView()
     var recipeDescription: String = ""
@@ -21,10 +22,18 @@ class LCRecipeCardVC: UIViewController {
     var dataSource: [[String]] = [[]]
     let favoriteButton = UIButton()
     var isFavorite = false
-    
+    var recipeIdentifier: String {
+        return "\(recipeName)"
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
+        if let savedFavoriteStatus = UserDefaults.standard.value(forKey: recipeIdentifier) as? Bool {
+            isFavorite = savedFavoriteStatus
+            updateFavoriteButtonAppearance()
+        }
+        
+        
         configureTableView()
         setupDataSource()
         configureFavoriteButton()
@@ -39,7 +48,6 @@ class LCRecipeCardVC: UIViewController {
         tableview.delegate = self
         tableview.dataSource = self
         tableview.frame = view.bounds
-//        tableview.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableview.backgroundColor = .systemBackground
         
         if let imageURL = selectedImageURL {
@@ -100,7 +108,6 @@ class LCRecipeCardVC: UIViewController {
         favoriteButton.contentVerticalAlignment = .fill
         favoriteButton.contentHorizontalAlignment = .fill
         
-        
         NSLayoutConstraint.activate([
             favoriteButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
             favoriteButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
@@ -120,8 +127,45 @@ class LCRecipeCardVC: UIViewController {
     
     @objc private func favoriteTapped() {
         isFavorite.toggle()
-        print("tapped")
         updateFavoriteButtonAppearance()
+        UserDefaults.standard.set(isFavorite, forKey: recipeIdentifier)
+        favoriteRecipe()
+    }
+    
+    
+    private func favoriteRecipe() {
+        guard let recipeImage = selectedRecipeImage.image else { return }
+        
+        let favorite = FavoriteRecipe(name: self.recipeName, image: recipeImage)
+
+        guard let tabBar = tabBarController as? LCTabBarVC,
+              let navController = tabBar.viewControllers?[1] as? UINavigationController,
+              let favoriteVC = navController.topViewController as? LCFavoritesVC else {
+                  return
+              }
+        
+        if !isFavorite {
+            removeFromFavorite()
+        } else {
+            addToFavorite()
+        }
+        
+        func addToFavorite() {
+            favoriteVC.favorites.append(favorite)
+            favoriteVC.tableView.reloadData()
+            favoriteVC.updateEmptyStateView()
+        }
+        
+        func removeFromFavorite() {
+            guard let indexToRemove = favoriteVC.favorites.firstIndex(where: {$0.name == favorite.name}) else {
+                return
+            }
+            
+            favoriteVC.favorites.remove(at: indexToRemove)
+            favoriteVC.tableView.reloadData()
+            favoriteVC.updateEmptyStateView()
+            
+        }
     }
 }
 
@@ -228,7 +272,7 @@ extension LCRecipeCardVC: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .systemBackground
          
             
-            if indexPath.section == 1 || indexPath.section == 2 {
+            if indexPath.section == 1 {
                 let separator = UIView()
                 separator.backgroundColor = .gray
                 cell.addSubview(separator)

@@ -30,6 +30,9 @@
 		9140B4112BB6577B001D61C4 /* LCDirectionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140B4102BB6577B001D61C4 /* LCDirectionsCell.swift */; };
 		9140B4132BB67F22001D61C4 /* LCDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140B4122BB67F22001D61C4 /* LCDataLoadingVC.swift */; };
 		9140B4152BB6B35A001D61C4 /* LCWelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9140B4142BB6B35A001D61C4 /* LCWelcomeVC.swift */; };
+		91B8DBA02BB8EC7000C93B0B /* LCFavoritesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B8DB9F2BB8EC7000C93B0B /* LCFavoritesCell.swift */; };
+		91B8DBA22BB8EEEA00C93B0B /* FavoriteRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B8DBA12BB8EEEA00C93B0B /* FavoriteRecipe.swift */; };
+		91B8DBA62BB91D5400C93B0B /* LCEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B8DBA52BB91D5400C93B0B /* LCEmptyStateView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		9140B4102BB6577B001D61C4 /* LCDirectionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDirectionsCell.swift; sourceTree = "<group>"; };
 		9140B4122BB67F22001D61C4 /* LCDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCDataLoadingVC.swift; sourceTree = "<group>"; };
 		9140B4142BB6B35A001D61C4 /* LCWelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCWelcomeVC.swift; sourceTree = "<group>"; };
+		91B8DB9F2BB8EC7000C93B0B /* LCFavoritesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCFavoritesCell.swift; sourceTree = "<group>"; };
+		91B8DBA12BB8EEEA00C93B0B /* FavoriteRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipe.swift; sourceTree = "<group>"; };
+		91B8DBA52BB91D5400C93B0B /* LCEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LCEmptyStateView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +149,7 @@
 				9140B3E52BAD6F32001D61C4 /* Cells */,
 				9140B3E72BAD704D001D61C4 /* Labels */,
 				9140B3E62BAD6F3C001D61C4 /* ViewControllers */,
+				91B8DBA52BB91D5400C93B0B /* LCEmptyStateView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,6 +159,7 @@
 			children = (
 				9140B3DD2BAD69F8001D61C4 /* LCRecipeListCell.swift */,
 				9140B4102BB6577B001D61C4 /* LCDirectionsCell.swift */,
+				91B8DB9F2BB8EC7000C93B0B /* LCFavoritesCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -177,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				9140B3FA2BB14FA1001D61C4 /* Recipe.swift */,
+				91B8DBA12BB8EEEA00C93B0B /* FavoriteRecipe.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -282,8 +291,11 @@
 				9140B40C2BB54A32001D61C4 /* LCSearchVC.swift in Sources */,
 				9140B3D62BAD5D98001D61C4 /* RecipeListVC.swift in Sources */,
 				9140B4062BB3E082001D61C4 /* LCButton.swift in Sources */,
+				91B8DBA62BB91D5400C93B0B /* LCEmptyStateView.swift in Sources */,
 				9140B3E22BAD6B69001D61C4 /* LCLabel.swift in Sources */,
+				91B8DBA22BB8EEEA00C93B0B /* FavoriteRecipe.swift in Sources */,
 				9140B4082BB4133A001D61C4 /* LCGroceryListVC.swift in Sources */,
+				91B8DBA02BB8EC7000C93B0B /* LCFavoritesCell.swift in Sources */,
 				9140B4152BB6B35A001D61C4 /* LCWelcomeVC.swift in Sources */,
 				9140B4112BB6577B001D61C4 /* LCDirectionsCell.swift in Sources */,
 				9140B3DC2BAD657F001D61C4 /* LCSettingsVC.swift in Sources */,

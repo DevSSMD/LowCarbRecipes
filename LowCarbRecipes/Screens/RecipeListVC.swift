@@ -20,6 +20,13 @@ class RecipeListVC: LCDataLoadingVC {
         getRecipes()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.hidesBackButton = true
+    }
+    
+
     
     private func getRecipes(){
         if let cachedRecipes = CacheManager.shared.retrieveRecipes() {
@@ -46,7 +53,6 @@ class RecipeListVC: LCDataLoadingVC {
     
     private func configureViewController(){
         title = "Browse"
-        self.navigationItem.hidesBackButton = true 
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchTapped))
     }
     

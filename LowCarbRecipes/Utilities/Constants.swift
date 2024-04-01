@@ -9,5 +9,4 @@ import Foundation
 
 struct Constants {
     static let reuseIDTableView = "table view cell"
-    static let reuseIDCollectionCellCotnainer1 = "container 1"
 }

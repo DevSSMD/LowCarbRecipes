@@ -12,6 +12,7 @@ class LCGroceryListVC: UIViewController {
     var groceryList: [String] = [] {
         didSet {
             tableView.reloadData()
+            updateEmptyStateView()
         }
     }
     let tableView = UITableView()
@@ -20,8 +21,38 @@ class LCGroceryListVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureTableView()
+        updateEmptyStateView()
     }
 
+    func updateEmptyStateView(){
+        if groceryList.isEmpty {
+            showEmptyStateView()
+        } else {
+            hideEmptyStateView()
+        }
+    }
+    
+    func showEmptyStateView() {
+        let emptyStateView = LCEmptyStateView("No groceries yet", "Grocery")
+        tableView.isHidden = true
+        view.addSubview(emptyStateView)
+        view.bringSubviewToFront(emptyStateView)
+        
+        NSLayoutConstraint.activate([
+            emptyStateView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emptyStateView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            emptyStateView.heightAnchor.constraint(equalToConstant: view.frame.size.height / 2)
+        ])
+    }
+    
+    
+    func hideEmptyStateView() {
+        tableView.isHidden = false
+        view.subviews.filter { $0 is LCEmptyStateView }.forEach { $0.removeFromSuperview() }
+    }
+    
+    
+    
     private func configureTableView() {
         view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
